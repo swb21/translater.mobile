@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="translater_2.Views.TranslatePage"
+             Title="Переводчик"
+             Padding="10,20,20,10">
+  <StackLayout>
+    <Label x:Name="header" Text="Выберите язык" />
+    <Picker x:Name="picker" SelectedIndexChanged="picker_SelectedIndexChanged">
+      <Picker.Items>
+        <x:String>Английский - Русский</x:String>
+        <x:String>Русский - Английский</x:String>
+      </Picker.Items>
+    </Picker>
+    <Label Text="Введите слово" Margin="0, 0, 0, 10"/>
+    <Entry Text="{Binding Word}"/>
+    <Button Text="Перевести" Margin="0, 0, 0, 20"
+            Clicked="OnButtonClicked"/>
+    <StackLayout x:Name="translate">
+      <!--<Label>Перевод:</Label>
+      <StackLayout BackgroundColor="#FF9B2E" Padding="5, 40, 5, 40">
+        <Label Text="{Binding Path=Word, Mode =OneWay}" TextColor="#ffffff" FontSize="Medium"/>
+      </StackLayout>-->
+    </StackLayout>
+  </StackLayout>
+</ContentPage>
