@@ -25,18 +25,34 @@ namespace translater_2.ViewModels
 
         public async Task<ObservableCollection<DefModel>> Translate(string lang)
         {
-            var dataService = DataService.GetInstance();
-            var response = await dataService.TranslateAsync(lang, Word);
-
-            if (response.def.Count == 0)
+            Word = Word.Trim();
+            if (Word == "")
             {
-                await _page.DisplayAlert("Упс...", "Мы не знаем перевода такого слова", "Ок");
+                await _page.DisplayAlert("Воу...", "Вы хотите перевести пустоту", "Ок");
                 return new ObservableCollection<DefModel>();
-            } else
-            {
-                TranslatedString = $"{response.def[0].text} [{response.def[0].ts}] - {response.def[0].tr[0].text}";
-                PartOfSpeech = response.def[0].pos;
-                return response.def;
+            } else {
+                string[] words = Word.Split(new Char[] { ' ' });
+                if (words.Length > 1)
+                {
+                    await _page.DisplayAlert("Воу...", "Вы хотите перевести сразу несколько слов", "Ок");
+                    return new ObservableCollection<DefModel>();
+                } else
+                {
+                    var dataService = DataService.GetInstance();
+                    var response = await dataService.TranslateAsync(lang, Word);
+
+                    if (response.def.Count == 0)
+                    {
+                        await _page.DisplayAlert("Упс...", "Мы не знаем перевода такого слова", "Ок");
+                        return new ObservableCollection<DefModel>();
+                    }
+                    else
+                    {
+                        TranslatedString = $"{response.def[0].text} [{response.def[0].ts}] - {response.def[0].tr[0].text}";
+                        PartOfSpeech = response.def[0].pos;
+                        return response.def;
+                    }
+                }
             }
         }
     }

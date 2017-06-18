@@ -17,11 +17,11 @@
       <Button Text="Перевести" Margin="0, 0, 0, 20"
               Clicked="OnButtonClicked"/>
       <StackLayout x:Name="translate"></StackLayout>
-      <StackLayout x:Name="otherTranslatesSt" Margin="0, 25, 0, 0"></StackLayout>
-      <StackLayout x:Name="meanSt" Margin="0, 25, 0, 0"></StackLayout>
-      <StackLayout x:Name="synSt" Margin="0, 25, 0, 0"></StackLayout>
-      <StackLayout x:Name="exSt" Margin="0, 25, 0, 0"></StackLayout>
-      <StackLayout x:Name="similarSt" Margin="0, 25, 0, 0"></StackLayout>
+      <StackLayout x:Name="otherTranslatesSt" ></StackLayout>
+      <StackLayout x:Name="meanSt" ></StackLayout>
+      <StackLayout x:Name="synSt" ></StackLayout>
+      <StackLayout x:Name="exSt" ></StackLayout>
+      <StackLayout x:Name="similarSt" ></StackLayout>
     </StackLayout>
   </ScrollView>
 </ContentPage>

@@ -13,7 +13,7 @@ namespace translater_2.Views
     {
         private TranslateViewModels translateViewModel { get; set; }
 
-        public string Lang { get; set; } = "en-ru";
+        public string Lang { get; set; }
         public string Word { get; set; }
 
         public TranslatePage()
@@ -21,6 +21,12 @@ namespace translater_2.Views
             InitializeComponent();
             translateViewModel = new TranslateViewModels(this);
             BindingContext = translateViewModel;
+        }
+
+        protected override void OnAppearing()
+        {
+            picker.SelectedIndex = 0;
+            Lang = "en-ru";
         }
 
         public void picker_SelectedIndexChanged(object sender, EventArgs e)
@@ -42,10 +48,12 @@ namespace translater_2.Views
             meanSt.Children.Clear();
             synSt.Children.Clear();
             exSt.Children.Clear();
+            otherTranslatesSt.Children.Clear();
+            similarSt.Children.Clear();
 
             var Def = await translateViewModel.Translate(Lang);
 
-            if (Def[0].text != null)
+            if (Def.Count != 0)
             {
                 Label label1 = new Label()
                 {
@@ -204,6 +212,14 @@ namespace translater_2.Views
                     BackgroundColor = Color.FromHex("#FF9B2E"),
                     Children = { label2, label3 }
                 };
+
+                otherTranslatesSt.Margin = new Thickness(0, 25, 0, 0);
+                meanSt.Margin = new Thickness(0, 25, 0, 0);
+                synSt.Margin = new Thickness(0, 25, 0, 0);
+                exSt.Margin = new Thickness(0, 25, 0, 0);
+                similarSt.Margin = new Thickness(0, 25, 0, 0);
+
+
 
                 stackLayout.Padding = new Thickness(5, 25, 5, 25);
                 translate.Children.Add(label1);
